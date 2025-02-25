@@ -1,5 +1,4 @@
 ---
-num: 6
 id: 'blob-object'
 title: 'Objeto blob'
 description: 'Aprendiendo sobre los objetos blob en Git.'

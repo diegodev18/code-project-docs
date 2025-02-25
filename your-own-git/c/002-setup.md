@@ -1,5 +1,4 @@
 ---
-num: 2
 id: 'setup'
 title: 'Configuración'
 description: 'Inicializa tu proyecto y prepara tu entorno de desarrollo.'

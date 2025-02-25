@@ -1,5 +1,4 @@
 ---
-num: 7
 id: 'read-blob'
 title: 'Leyendo un objeto blob'
 description: 'Aprendiendo a como Git lee un objeto blob.'

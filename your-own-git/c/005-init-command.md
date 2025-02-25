@@ -1,5 +1,4 @@
 ---
-num: 5
 id: 'init-command'
 title: 'Implementando el comando init'
 description: 'Crea un nuevo repositorio Git vacío.'

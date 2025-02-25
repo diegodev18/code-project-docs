@@ -1,5 +1,4 @@
 ---
-num: 4
 id: 'get-args'
 title: 'Obteniendo argumentos'
 description: 'Obtén los argumentos de la línea de comandos.'

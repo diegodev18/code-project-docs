@@ -1,5 +1,4 @@
 ---
-num: 3
 id: 'starting-project'
 title: 'Iniciando el proyecto'
 description: 'Crea un nuevo repositorio Git vacío.'

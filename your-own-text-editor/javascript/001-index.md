@@ -1,5 +1,4 @@
 ---
-num: 1
 id: 'inicio'
 title: 'Introduccion'
 description: 'Crea tu propio editor de texto al estilo del bloc de notas de Windows.'
