@@ -18,7 +18,7 @@ Este comando creará un nuevo directorio oculto llamado `.git` en tu proyecto, q
 
 El directorio `.git` contiene todos los archivos necesarios para el control de versiones de tu proyecto. A continuación, se muestra una lista de los archivos y directorios más importantes que se encuentran en el directorio `.git`:
 
-- `branches`: Almacena información sobre las ramas del repositorio.
+- `branches`: Archivo que almacena información sobre las ramas del repositorio.
 - `COMMIT_EDITMSG`: Archivo temporal que contiene el mensaje de confirmación.
 - `config`: Archivo de configuración del repositorio.
 - `description`: Archivo que contiene la descripción del repositorio.
