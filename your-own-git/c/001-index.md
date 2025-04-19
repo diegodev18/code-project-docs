@@ -23,4 +23,4 @@ Construir tu propio VCS te ayudará a entender cómo funcionan las herramientas 
 > Existen distintos VCS como GNU Arch, Monotone, Darcs, Mercurial y Git, el más famoso a manos del creador de Linux, Linus Torvalds.
 > Git y Github no son lo mismo! Github es una plataforma de Microsoft que almacena repositorios Git publicos y privados para que los colaboradores puedan trabajar desde diferentes sistemas, como se aloja este proyecto!
 
-Para este proyecto, usaremos una SHELL de Linux. Si estás en Windows, puedes usar [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) o seguir las instrucciones adicionales.
+Para este proyecto, usaremos una SHELL de Linux. Si estás en Windows, puedes usar [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) o Powershell.
