@@ -1,4 +1,8 @@
-# Módulo: Más funciones para los ATF.
+---
+id: 'mas-funciones'
+title: 'Más funciones para los ATF.'
+description: 'Creamos funciones para inicializar las estructuras de datos de los ATF.'
+---
 
 En este módulo explicaremos qué funciones nos necesarias para manejar un ATF.
 
@@ -76,7 +80,8 @@ int valorEnListaInt(LISTAINT list, int valor){
 }
 ```
 
-# Descripción de las funciones
+## Descripción de las funciones
+
 ```c
 crearListaChar(int n)
 ```
@@ -122,15 +127,14 @@ int valorEnListaInt(LISTAINT list, int valor)
 ```
 Devuelve 1 si encuentra valor en la lista (list) o devuelve 0 si no lo encuentra.
 
-# ¿Por qué necesito todas estas funciones?
+### ¿Por qué necesito todas estas funciones?
 Estas funciones son fundamentales para trabajar con autómatas finitos de transición (ATF), ya que permiten:
 
-**Manejo dinámico de memoria**: Las funciones de creación de listas y agregados permiten gestionar las listas de caracteres, enteros y funciones de transición de manera eficiente, sin preocuparse por el tamaño inicial.
+- **Manejo dinámico de memoria**: Las funciones de creación de listas y agregados permiten gestionar las listas de caracteres, enteros y funciones de transición de manera eficiente, sin preocuparse por el tamaño inicial.
 
-**Definición de transiciones**: Las funciones de transición (crearFuncion y agregarFuncion) permiten definir y almacenar las reglas que el autómata seguirá para realizar su procesamiento basado en el estado y el símbolo de entrada.
+- **Definición de transiciones**: Las funciones de transición (crearFuncion y agregarFuncion) permiten definir y almacenar las reglas que el autómata seguirá para realizar su procesamiento basado en el estado y el símbolo de entrada.
 
-**Flexibilidad**: Al usar listas dinámicas, puedes agregar o quitar elementos (caracteres, enteros, funciones) según sea necesario, lo que hace que el módulo sea flexible y escalable para diferentes configuraciones de ATF.
+- **Flexibilidad**: Al usar listas dinámicas, puedes agregar o quitar elementos (caracteres, enteros, funciones) según sea necesario, lo que hace que el módulo sea flexible y escalable para diferentes configuraciones de ATF.
 
-# Uso típico
+### Uso típico
 Este módulo se utiliza principalmente para construir y manejar autómatas finitos de transición en programas que requieren la simulación de máquinas de estados, como en los analizadores léxicos de compiladores, sistemas de reconocimiento de patrones o cualquier otro tipo de aplicación que implique procesamiento de cadenas.
-
