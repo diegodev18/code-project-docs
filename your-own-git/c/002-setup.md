@@ -12,8 +12,15 @@ En este capítulo, configurarás tu entorno de desarrollo y prepararás tu proye
 
 Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
 
-- [ ] [GCC](https://gcc.gnu.org/)
-- [ ] [Visual Studio Code](https://code.visualstudio.com/)
+-  [GCC](https://gcc.gnu.org/)  (Por default en linux)
+-  Un editor de codigo como [Visual Studio Code](https://code.visualstudio.com/), [Sublime text](https://www.sublimetext.com/), [Zed](https://zed.dev/) o incluso tu bloc de notas! Cualquier entorno donde te sientas comodo.
+
+
+Verifica que tienes *gcc* con
+
+``` bash
+gcc --version
+```
 
 ## Inicializa tu proyecto
 

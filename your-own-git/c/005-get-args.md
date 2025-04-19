@@ -15,8 +15,7 @@ Para que nuestro programa pueda recibir argumentos de la línea de comandos, nec
 
 ## Mas sobre los argumentos
 
-- El primer argumento en el arreglo `argv` es el nombre del programa.
-- `argc` siempre será al menos 1, ya que el primer argumento es el nombre del programa.
+- `argc` siempre será >= 1, ya que el primer argumento es el nombre del programa.
 - Los argumentos adicionales se almacenan en las posiciones siguientes del arreglo `argv`.
 - Los argumentos se separan por espacios en la línea de comandos.
 
