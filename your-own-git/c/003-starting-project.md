@@ -29,7 +29,7 @@ gcc main.c -o main
 
 O en **Windows**:
 
-```bash
+```Powershell
 gcc main.c -o main.exe
 ```
 
