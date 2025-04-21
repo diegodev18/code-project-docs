@@ -1,5 +1,8 @@
-# Módulo: Imprimir el Autómata
-
+---
+id: 'imprimir-automata'
+title: 'Imprimir Autómata.'
+description: 'Creamos una función para imprimir todas las características de un autómata.'
+---
 Este módulo contiene una función que permite imprimir las características de un autómata finito de transición (ATF). La función `imprimirAutomata` muestra de forma legible los componentes del autómata, como los estados, el alfabeto, el estado inicial, los estados finales y las funciones de transición.
 
 ## Función: `imprimirAutomata`
@@ -57,21 +60,23 @@ void imprimirAutomata(AUTOMATA a) {
 }
 ```
 
-# Descripción del flujo de la función
-**Impresión de los estados (Q)**
+## Descripción del flujo de la función
+
+**Impresión de los estados (Q)**  
 La función empieza imprimiendo los estados del autómata. Se recorre el arreglo de estados y se muestra cada uno.
 
-**Impresión del alfabeto (A)**
+**Impresión del alfabeto (A)**  
 De forma similar, se recorre el arreglo del alfabeto y se imprime cada símbolo.
 
-**Impresión del estado inicial (I)**
+**Impresión del estado inicial (I)**  
 Se muestra el estado inicial del autómata.
 
-**Impresión de los estados finales (F)**
+**Impresión de los estados finales (F)**  
 Se imprimen los estados que son considerados finales, es decir, aquellos que aceptan las cadenas de entrada.
 
-**Impresión de las funciones de transición**
+**Impresión de las funciones de transición**  
 Finalmente, se muestran las transiciones definidas en el autómata. Cada transición se imprime en el formato: (<estado>, <símbolo>) = <estado de destino>, lo que indica cómo el autómata pasa de un estado a otro en función de un símbolo del alfabeto.
 
-# ¿Por qué es útil esta función?
+## ¿Por qué es útil esta función?
+
 La función **imprimirAutomata** es útil para depurar y visualizar los elementos de un autómata, ya que permite ver claramente cómo está definido el autómata en términos de sus estados, alfabeto, estado inicial, estados finales y transiciones. Esto es especialmente valioso en el contexto de simuladores de autómatas o cuando se está desarrollando un analizador léxico o de expresiones regulares, donde el autómata es fundamental.

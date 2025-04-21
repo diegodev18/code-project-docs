@@ -1,5 +1,8 @@
-# Módulo: Funciones de Utilidad para el Autómata
-
+---
+id: 'funcionalidades-atf'
+title: 'Funcionalidades del AFD.'
+description: 'Crearemos todas las funciones necesarias para analizar una cadena con un AFD.'
+---
 Este módulo contiene funciones que son útiles para manipular y analizar un autómata finito de transición (ATF). Las funciones proporcionadas permiten verificar si un estado es final, obtener una nueva cadena a partir de un índice dado, y recuperar una lista de funciones de transición para un evento y un estado específicos.
 
 ## Funciones
