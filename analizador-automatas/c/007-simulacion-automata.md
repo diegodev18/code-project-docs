@@ -1,6 +1,8 @@
-
-# Módulo: Simulación de un Autómata con Cadena de Entrada
-
+---
+id: 'simulacion-automata'
+title: 'Simulación de un Autómata.'
+description: 'Creamos una función recursiva para poder analizar las funciones de transición de un autómata y determinaremos si una cadena es aceptada o no por un AFD.'
+---
 Este módulo contiene la función `procesarCadena`, que simula la ejecución de un autómata finito de transición (ATF) al procesar una cadena de entrada. La función evalúa las transiciones entre estados basándose en el alfabeto del autómata y determina si la cadena es aceptada o no.
 
 ## Función Principal
@@ -50,15 +52,21 @@ La función `procesarCadena` es fundamental para la simulación del comportamien
 
 Supongamos que tenemos un autómata con los siguientes parámetros:
 
-- Alfabeto: `{'a', 'b'}`
-- Estados: `{'q0', 'q1'}`
-- Estado inicial: `q0`
-- Estado final: `q1`
+- Alfabeto: `{'0', '1'}`
+- Estados: `{'1', '2', '3', '4'}`
+- Estado inicial: `1`
+- Estado final: `4`
 - Funciones de transición: 
-  - `q0, a -> q1`
-  - `q1, b -> q0`
+  - `(1, 0) → 2`
+  - `(1, 1) → 3`
+  - `(2, 1) → 4`
+  - `(3, 0) → 1`
+  - `(3, 1) → 4`
+  - `(4, 0) → 4`
+  - `(4, 1) → 4`
 
-Y que queremos procesar la cadena `"ab"`.
+
+Supongamos que queremos evaluar la cadena `01`:
 
 La función `procesarCadena` se ejecutaría de la siguiente manera:
 
@@ -66,14 +74,20 @@ La función `procesarCadena` se ejecutaría de la siguiente manera:
 2. En el segundo paso, el estado es `q1`, se lee el símbolo `'b'` y el autómata vuelve al estado `q0`.
 3. Al final de la cadena, el estado es `q0` y no es un estado final, por lo que la cadena **no es aceptada**.
 
+1. Estado actual: 1, leyendo `0`
+    - Transición: (1, 0) → 2
+2. Estado actual: 2, leyendo `1`
+    - Transición: (2, 1) → 4
+3. Fin de cadena, estado actual: 4 → estado final
+
 ### Salida Esperada:
 
 ```c
-Estado actual: q0, Leyendo: a
-Transición: (q0, a) -> q1
-Estado actual: q1, Leyendo: b
-Transición: (q1, b) -> q0
-Cadena no aceptada
+Estado actual: 1, Leyendo: 0
+Transición: (1, 0) -> 2
+Estado actual: 2, Leyendo: 1
+Transición: (2, 1) -> 4
+Cadena aceptada
 ```
 
 ---
