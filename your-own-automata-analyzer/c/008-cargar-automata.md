@@ -3,6 +3,7 @@ id: 'cargar-automata'
 title: 'Cargar autómata.'
 description: 'Configuraremos los archivos necesarios y un par de tips para echar a andar a nuestro analizador de cadenas en AFD.'
 ---
+
 Este módulo está diseñado para ayudarte a pensar en cómo podrías implementar la lógica para cargar un autómata a partir de archivos de texto. En lugar de darte la implementación completa, te daremos una guía paso a paso, recomendaciones y algunos fragmentos clave. ¡Tú te encargarás del resto!
 
 ---

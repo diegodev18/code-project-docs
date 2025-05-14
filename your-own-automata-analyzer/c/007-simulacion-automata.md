@@ -3,6 +3,7 @@ id: 'simulacion-automata'
 title: 'Simulación de un Autómata.'
 description: 'Creamos una función recursiva para poder analizar las funciones de transición de un autómata y determinaremos si una cadena es aceptada o no por un AFD.'
 ---
+
 Este módulo contiene la función `procesarCadena`, que simula la ejecución de un autómata finito de transición (ATF) al procesar una cadena de entrada. La función evalúa las transiciones entre estados basándose en el alfabeto del autómata y determina si la cadena es aceptada o no.
 
 ## Función Principal
@@ -56,7 +57,7 @@ Supongamos que tenemos un autómata con los siguientes parámetros:
 - Estados: `{'1', '2', '3', '4'}`
 - Estado inicial: `1`
 - Estado final: `4`
-- Funciones de transición: 
+- Funciones de transición:
   - `(1, 0) → 2`
   - `(1, 1) → 3`
   - `(2, 1) → 4`
