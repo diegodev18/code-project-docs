@@ -1,0 +1,22 @@
+{
+    "title": "Fase 1: Configuración del Entorno",
+    "description": "Preparando el entorno de Node.js.",
+    "difficulty": "easy",
+    "steps": [
+        {
+            "title": "Configurar Entorno Node.js",
+            "description": "Inicializa tu proyecto Node.js para el Gestor de Tareas.",
+            "file": "01-setup.mdx"
+        },
+        {
+            "title": "Inicializar Git",
+            "description": "Configura el control de versiones.",
+            "file": "02-git.mdx"
+        },
+        {
+            "title": "Estructura del Proyecto",
+            "description": "Organiza carpetas y archivos.",
+            "file": "03-structure.mdx"
+        }
+    ]
+}

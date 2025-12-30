@@ -1,0 +1,25 @@
+
+# Definir Rutas Básicas
+
+En este nivel, crearemos nuestra primera ruta de API.
+
+## Pasos
+
+### 1. Crear Archivo de Ruta
+
+Crea `routes/tasks.js` con el siguiente contenido:
+
+```javascript
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  res.send('Lista de Tareas');
+});
+
+module.exports = router;
+```
+
+### 2. Importar Ruta
+
+Actualiza `index.js` para usar la nueva ruta.

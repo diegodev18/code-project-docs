@@ -1,0 +1,30 @@
+
+# Crear Controladores
+
+En este nivel, separaremos la lógica de las rutas usando controladores.
+
+## Pasos
+
+### 1. Crear Controlador
+
+Crea `controller/taskController.js`:
+
+```javascript
+exports.getAllTasks = (req, res) => {
+    res.json({ message: "Obtener todas las tareas" });
+};
+```
+
+### 2. Actualizar Ruta
+
+Modifica `routes/tasks.js` para usar el controlador:
+
+```javascript
+const express = require('express');
+const router = express.Router();
+const taskController = require('../controller/taskController');
+
+router.get('/', taskController.getAllTasks);
+
+module.exports = router;
+```

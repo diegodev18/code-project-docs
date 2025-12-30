@@ -1,0 +1,22 @@
+{
+    "title": "Fase 2: Lógica Principal",
+    "description": "Implementando las funcionalidades principales.",
+    "difficulty": "medium",
+    "steps": [
+        {
+            "title": "Configurar Servidor Express",
+            "description": "Instala y configura Express.",
+            "file": "01-server.mdx"
+        },
+        {
+            "title": "Definir Rutas Básicas",
+            "description": "Crea tus primeros endpoints de API.",
+            "file": "02-routes.mdx"
+        },
+        {
+            "title": "Crear Controladores",
+            "description": "Separa la lógica con controladores.",
+            "file": "03-controllers.mdx"
+        }
+    ]
+}
