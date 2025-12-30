@@ -1,0 +1,24 @@
+{
+  "name": "code-project-docs",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Documentación de proyectos de código",
+  "main": "index.js",
+  "scripts": {
+    "sync-db": "ts-node src/scripts/sync-db.ts",
+    "build": "rimraf ./dist && tsc --build && tsc-alias",
+    "start": "node ./dist/app.js"
+  },
+  "keywords": [],
+  "author": "Diego Sanchez",
+  "license": "MIT",
+  "devDependencies": {
+    "rimraf": "6.1.2",
+    "ts-node": "10.9.2",
+    "tsc-alias": "1.8.16",
+    "typescript": "5.5.2"
+  },
+  "dependencies": {
+    "dotenv": "16.4.7"
+  }
+}
