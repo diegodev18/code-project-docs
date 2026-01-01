@@ -2,28 +2,41 @@ import type { Project, Locale, Stack, Phase, Entry, Step } from "../types/sync-d
 
 import fs from "fs";
 import path from "path";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const { API_URL, API_SECRET_KEY } = process.env;
 const DOCS_DIR = path.resolve(__dirname, "../../docs");
 
 const main = async () => {
-    const payload = scanProject(DOCS_DIR);
-    console.log(JSON.stringify(payload, null, 2));
-};
-
-const getFilesContent = (dir: string) => {
-    const files: Record<string, string> = {};
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-
-    for (const entry of entries) {
-        if (entry.isFile() && entry.name.endsWith(".mdx")) {
-            const content = fs.readFileSync(path.join(dir, entry.name), "utf-8");
-            files[entry.name] = content;
-        }
+    if (!API_URL || !API_SECRET_KEY) {
+        console.error("API_URL or API_SECRET_KEY not found");
+        return;
     }
 
-    return files;
+    console.log("Syncing database...");
+    const payload = scanProject(DOCS_DIR);
+
+    if (payload.length === 0) {
+        console.error("No projects found");
+        return;
+    }
+
+    try {
+        const response = await axios.post(`${API_URL}/docs/sync`, payload, {
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": API_SECRET_KEY,
+            },
+        });
+        if (response.status !== 200) {
+            console.error("Error syncing database");
+            return;
+        }
+
+        console.log("Database synced successfully");
+    } catch (error) {
+        console.error("Error syncing database");
+    }
 };
 
 const scanProject = (dir: string) => {
