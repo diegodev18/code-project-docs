@@ -13,12 +13,14 @@
   "author": "Diego Sanchez",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "25.0.3",
     "rimraf": "6.1.2",
     "ts-node": "10.9.2",
     "tsc-alias": "1.8.16",
     "typescript": "5.5.2"
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "dotenv": "16.4.7"
   }
 }
