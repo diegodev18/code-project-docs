@@ -8,6 +8,32 @@
 
 ---
 
+## 📂 Estructura del proyecto
+
+Para contribuir con una nueva documentación de proyecto, asegúrate de seguir la siguiente estructura de directorios y archivos. Puedes basarte en el directorio `_TEMPLATE` como referencia:
+
+```
+project_name/
+├── project.json            # Metadatos generales del proyecto
+└── [locale]/               # Código de idioma (ej: es, en)
+    ├── locale.json         # Metadatos del idioma
+    └── [stack_name]/       # Nombre del stack tecnológico (ej: 01-react-node, 01-flutter-firebase)
+        ├── stack.json      # Definición del stack
+        └── [phase_name]/   # Fases del desarrollo (ej: 01-initialization, 02-core)
+            ├── phase.json  # Metadatos de la fase
+            ├── 01-step.mdx # Pasos detallados en formato MDX
+            └── ...
+```
+
+### Descripción de archivos JSON
+
+- **project.json**: Define el autor, dificultad (`easy`, `medium`, `hard`) y tags del proyecto.
+- **locale.json**: Define el título y descripción localizado del proyecto.
+- **stack.json**: Lista las tecnologías utilizadas en esa variante del proyecto.
+- **phase.json**: describe la fase del proyecto, su dificultad y lista los pasos con sus títulos y archivos correspondientes.
+
+---
+
 ## 📝 Cómo contribuir a la documentación
 
 Sigue estos pasos para mejorar la documentación de Code Project:
