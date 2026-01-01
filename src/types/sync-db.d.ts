@@ -8,6 +8,7 @@ export interface Project {
 }
 
 export interface Locale {
+    slug: string;
     title: string;
     description: string;
 }
@@ -31,12 +32,10 @@ export interface Step {
 }
 
 export interface Entry {
+    data: Project;
     project: {
-        data: Project;
-        locales: Record<string, Locale>;
-        project: {
-            stack: Stack;
-            phases: Phase[];
-        }[];
-    };
+        locale: Locale;
+        stack: Stack;
+        phases: Phase[];
+    }[];
 }

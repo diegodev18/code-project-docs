@@ -34,7 +34,7 @@ const scanProject = (dir: string) => {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
 
     for (const entry of entries) {
-        const entryObj: Entry = { project: { data: {} as Project, locales: {}, project: [] } };
+        const entryObj: Entry = { data: {} as Project, project: [] };
         const fullPath = path.join(dir, entry.name);
 
         if (!entry.isDirectory()) continue;
@@ -46,12 +46,13 @@ const scanProject = (dir: string) => {
             const projectJson = fs.readFileSync(projectJsonPath, "utf-8");
             const project = JSON.parse(projectJson) as Project;
 
-            entryObj.project.data = project;
+            entryObj.data = project;
         } catch (error) {
             console.error(`Error reading project.json for ${entry.name}:`, error);
             continue;
         }
 
+        const subEntryObj: Entry["project"][number] = { stack: {} as Stack, phases: [], locale: {} as Locale };
         const localeEntries = fs.readdirSync(fullPath, { withFileTypes: true });
         for (const localeEntry of localeEntries) {
             if (!localeEntry.isDirectory()) continue;
@@ -59,18 +60,17 @@ const scanProject = (dir: string) => {
                 const localeJsonPath = path.join(fullPath, localeEntry.name, "locale.json");
                 const localeJson = fs.readFileSync(localeJsonPath, "utf-8");
                 const locale = JSON.parse(localeJson) as Locale;
-                entryObj.project.locales[localeEntry.name] = locale;
+                subEntryObj.locale = { ...locale, slug: localeEntry.name };
 
                 const stackEntries = fs.readdirSync(path.join(fullPath, localeEntry.name), { withFileTypes: true });
                 for (const stackEntry of stackEntries) {
-                    const stackObj: { stack: Stack, phases: Phase[] } = { stack: {} as Stack, phases: [] };
 
                     if (!stackEntry.isDirectory()) continue;
                     try {
                         const stackJsonPath = path.join(fullPath, localeEntry.name, stackEntry.name, "stack.json");
                         const stackJson = fs.readFileSync(stackJsonPath, "utf-8");
                         const stack = JSON.parse(stackJson) as Stack;
-                        stackObj.stack = stack;
+                        subEntryObj.stack = stack;
 
                         const phaseEntries = fs.readdirSync(path.join(fullPath, localeEntry.name, stackEntry.name), { withFileTypes: true });
                         for (let i = 0; i < phaseEntries.length; i++) {
@@ -80,7 +80,7 @@ const scanProject = (dir: string) => {
                                 const phaseJsonPath = path.join(fullPath, localeEntry.name, stackEntry.name, phaseEntry.name, "phase.json");
                                 const phaseJson = fs.readFileSync(phaseJsonPath, "utf-8");
                                 const phase = JSON.parse(phaseJson) as Phase;
-                                stackObj.phases.push(phase);
+                                subEntryObj.phases.push(phase);
 
                                 const stepEntries = phase.steps;
                                 for (let j = 0; j < stepEntries.length; j++) {
@@ -90,14 +90,14 @@ const scanProject = (dir: string) => {
                                     if (!fs.existsSync(stepPath)) continue;
 
                                     const stepContent = fs.readFileSync(stepPath, "utf-8");
-                                    stackObj.phases[i].steps[j].content = stepContent;
+                                    subEntryObj.phases[i].steps[j].content = stepContent;
                                 }
                             } catch (error) {
                                 console.error(`Error reading phase.json for ${entry.name}:`, error);
                                 continue;
                             }
                         }
-                        entryObj.project.project.push(stackObj);
+                        entryObj.project.push(subEntryObj);
                     } catch (error) {
                         console.error(`Error reading stack.json for ${entry.name}:`, error);
                         continue;
