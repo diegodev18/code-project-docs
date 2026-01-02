@@ -15,6 +15,7 @@ export interface Locale {
 
 export interface Stack {
   stack: string[];
+  slug: string;
 }
 
 export interface Phase {

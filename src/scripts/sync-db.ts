@@ -110,7 +110,7 @@ const scanProject = (dir: string) => {
             );
             const stackJson = fs.readFileSync(stackJsonPath, "utf-8");
             const stack = JSON.parse(stackJson) as Stack;
-            stackObj.stack.data = stack;
+            stackObj.stack.data = { ...stack, slug: stackEntry.name };
 
             const phaseEntries = fs.readdirSync(
               path.join(fullPath, localeEntry.name, stackEntry.name),
