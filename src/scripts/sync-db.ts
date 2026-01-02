@@ -3,8 +3,14 @@ import type { Project, Locale, Stack, Phase, Entry } from "../types/sync-db";
 import fs from "fs";
 import path from "path";
 import axios, { AxiosError } from "axios";
+import dotenv from "dotenv";
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const { API_URL, API_SECRET_KEY } = process.env;
+const DEBUG = process.env.DEBUG === "true";
 const DOCS_DIR = path.resolve(__dirname, "../../docs");
 
 const main = async () => {
@@ -21,6 +27,10 @@ const main = async () => {
     return;
   }
 
+  if (DEBUG) {
+    console.log("Payload:", JSON.stringify(payload, null, 2));
+  }
+
   try {
     const response = await axios.post(`${API_URL}/docs/sync`, payload, {
       headers: {
@@ -30,12 +40,36 @@ const main = async () => {
     });
     if (response.status !== 200) {
       console.error("Error syncing database");
+
+      if (DEBUG) {
+        console.error("Response:", response.data);
+      }
       return;
     }
 
     console.log("Database synced successfully");
   } catch (error) {
     console.error("Error syncing database");
+
+    if (DEBUG) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
+        if (axiosError.response) {
+          console.error("Response data:", axiosError.response.data);
+          console.error("Response status:", axiosError.response.status);
+          console.error("Response headers:", axiosError.response.headers);
+        } else if (axiosError.request) {
+          console.error(
+            "Request made but no response received:",
+            axiosError.request
+          );
+        } else {
+          console.error("Error setting up request:", axiosError.message);
+        }
+      } else {
+        console.error("Non-Axios error:", error);
+      }
+    }
   }
 };
 
@@ -59,7 +93,7 @@ const scanProject = (dir: string) => {
       const projectJson = fs.readFileSync(projectJsonPath, "utf-8");
       const project = JSON.parse(projectJson) as Project;
 
-      entryObj.data = project;
+      entryObj.data = { ...project, slug: entry.name };
     } catch (error) {
       console.error(`Error reading project.json for ${entry.name}:`, error);
       continue;
@@ -126,8 +160,9 @@ const scanProject = (dir: string) => {
                   phaseEntry.name,
                   "phase.json"
                 );
-                const phaseJson = fs.readFileSync(phaseJsonPath, "utf-8");
-                const phase = JSON.parse(phaseJson) as Phase;
+                const phaseJsonFile = fs.readFileSync(phaseJsonPath, "utf-8");
+                const phaseJson = JSON.parse(phaseJsonFile) as Phase;
+                const phase = { ...phaseJson, slug: phaseEntry.name };
 
                 const stepEntries = phase.steps;
                 for (let j = 0; j < stepEntries.length; j++) {
