@@ -3,7 +3,7 @@ export type Difficulty = "easy" | "medium" | "hard";
 export interface Project {
   author: string;
   difficulty: Difficulty;
-  description: string;
+  slug: string;
   tags?: string[];
 }
 
@@ -18,6 +18,7 @@ export interface Stack {
 }
 
 export interface Phase {
+  slug: string;
   title: string;
   description: string;
   difficulty: Difficulty;
@@ -34,8 +35,14 @@ export interface Step {
 export interface Entry {
   data: Project;
   project: {
-    locale: Locale;
-    stack: Stack;
-    phases: Phase[];
+    locale: {
+      data: Locale;
+      project: {
+        stack: {
+          data: Stack;
+          phases: Phase[];
+        };
+      }[];
+    };
   }[];
 }

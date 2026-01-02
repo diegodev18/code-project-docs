@@ -65,14 +65,17 @@ const scanProject = (dir: string) => {
       continue;
     }
 
-    const subEntryObj: Entry["project"][number] = {
-      stack: {} as Stack,
-      phases: [],
-      locale: {} as Locale,
-    };
     const localeEntries = fs.readdirSync(fullPath, { withFileTypes: true });
     for (const localeEntry of localeEntries) {
       if (!localeEntry.isDirectory()) continue;
+
+      const localeObj: Entry["project"][number] = {
+        locale: {
+          data: {} as Locale,
+          project: [],
+        },
+      };
+
       try {
         const localeJsonPath = path.join(
           fullPath,
@@ -81,7 +84,7 @@ const scanProject = (dir: string) => {
         );
         const localeJson = fs.readFileSync(localeJsonPath, "utf-8");
         const locale = JSON.parse(localeJson) as Locale;
-        subEntryObj.locale = { ...locale, slug: localeEntry.name };
+        localeObj.locale.data = { ...locale, slug: localeEntry.name };
 
         const stackEntries = fs.readdirSync(
           path.join(fullPath, localeEntry.name),
@@ -89,6 +92,15 @@ const scanProject = (dir: string) => {
         );
         for (const stackEntry of stackEntries) {
           if (!stackEntry.isDirectory()) continue;
+
+          const stackObj: Entry["project"][number]["locale"]["project"][number] =
+            {
+              stack: {
+                data: {} as Stack,
+                phases: [],
+              },
+            };
+
           try {
             const stackJsonPath = path.join(
               fullPath,
@@ -98,14 +110,13 @@ const scanProject = (dir: string) => {
             );
             const stackJson = fs.readFileSync(stackJsonPath, "utf-8");
             const stack = JSON.parse(stackJson) as Stack;
-            subEntryObj.stack = stack;
+            stackObj.stack.data = stack;
 
             const phaseEntries = fs.readdirSync(
               path.join(fullPath, localeEntry.name, stackEntry.name),
               { withFileTypes: true }
             );
-            for (let i = 0; i < phaseEntries.length; i++) {
-              const phaseEntry = phaseEntries[i];
+            for (const phaseEntry of phaseEntries) {
               if (!phaseEntry.isDirectory()) continue;
               try {
                 const phaseJsonPath = path.join(
@@ -117,7 +128,6 @@ const scanProject = (dir: string) => {
                 );
                 const phaseJson = fs.readFileSync(phaseJsonPath, "utf-8");
                 const phase = JSON.parse(phaseJson) as Phase;
-                subEntryObj.phases.push(phase);
 
                 const stepEntries = phase.steps;
                 for (let j = 0; j < stepEntries.length; j++) {
@@ -133,8 +143,10 @@ const scanProject = (dir: string) => {
                   if (!fs.existsSync(stepPath)) continue;
 
                   const stepContent = fs.readFileSync(stepPath, "utf-8");
-                  subEntryObj.phases[i].steps[j].content = stepContent;
+                  phase.steps[j].content = stepContent;
                 }
+
+                stackObj.stack.phases.push(phase);
               } catch (error) {
                 console.error(
                   `Error reading phase.json for ${entry.name}:`,
@@ -143,12 +155,15 @@ const scanProject = (dir: string) => {
                 continue;
               }
             }
-            entryObj.project.push(subEntryObj);
+
+            localeObj.locale.project.push(stackObj);
           } catch (error) {
             console.error(`Error reading stack.json for ${entry.name}:`, error);
             continue;
           }
         }
+
+        entryObj.project.push(localeObj);
       } catch (error) {
         console.error(`Error reading locale.json for ${entry.name}:`, error);
         continue;
