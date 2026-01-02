@@ -1,0 +1,26 @@
+
+# Configurar Servidor Express
+
+En este nivel, instalaremos y configuraremos Express.js.
+
+## Pasos
+
+### 1. Instalar Express
+
+```bash
+npm install express
+```
+
+### 2. Crear Servidor Básico
+
+Edita `index.js` para crear un servidor básico:
+
+```javascript
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`Aplicación de ejemplo escuchando en http://localhost:${port}`);
+});
+```
